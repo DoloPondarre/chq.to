@@ -1,0 +1,29 @@
+<h1>Listing Links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>URL</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @links.each do |link| %>
+      <tr>
+        <td><%= link.name %></td>
+        <td><%= link.url %></td>
+        <td>
+          <%= link_to 'Show', link %>
+          <%= link_to 'Edit', edit_link_path(link) %>
+          <%= link_to 'Destroy', link_path(link), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link', new_link_path %>

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @link.name %>
+</p>
+
+<p>
+  <strong>URL:</strong>
+  <%= @link.url %>
+</p>
+
+<p>
+  <strong>Short URL:</strong>
+  <%= @link.short_url %>
+</p>
+
+<p>
+  <strong>Link Type:</strong>
+  <%= @link.link_type %>
+</p>
+
+<%if @link.link_type === "temporal"%>
+  <p>
+    <strong>Expires At:</strong>
+    <%= @link.expires_at %>
+  </p>
+<%end%>
+
+<%if @link.link_type === "privado"%>
+  <p>
+    <strong>Password:</strong>
+    <%= @link.password %>
+  </p>
+<%end%>
+
+<%= link_to 'Edit', edit_link_path(@link) %> |
+<%= link_to 'Back', links_path %> |
+<%= link_to 'Destroy', link_path(@link), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
