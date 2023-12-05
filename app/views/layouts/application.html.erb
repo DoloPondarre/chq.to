@@ -11,6 +11,29 @@
   </head>
 
   <body>
+    <header>
+      <!-- Otros elementos de encabezado aquí -->
+
+      <% if user_signed_in? %>
+        <!-- Si el usuario está autenticado, muestra el enlace de cierre de sesión -->
+        <%= link_to "Cerrar Sesión", destroy_user_session_path, data: {turbo_method: :delete}  %>
+      <% else %>
+        <!-- Si el usuario no está autenticado, muestra el enlace de inicio de sesión -->
+        <%= link_to "Iniciar Sesión", new_user_session_path %>
+        <%= link_to 'Registrar', new_user_registration_path, class: 'btn btn-primary' %>
+      <% end %>
+    </header>
+    <nav>
+      <%= link_to "Inicio", root_path %>
+      <% if user_signed_in? %>
+        <%= link_to "Enlaces", links_path %>
+      <% end %>
+    </nav>
+
     <%= yield %>
+
+    <footer>
+      <!-- Otros elementos de pie de página aquí -->
+    </footer>
   </body>
 </html>

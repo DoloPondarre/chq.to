@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
-  get 'links/index'
-  get 'links/show'
-  get 'links/new'
-  get 'links/edit'
-  get 'links/delete'
+
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -14,7 +10,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
 
-  resources :links, only: [:index, :show, :new, :create, :edit, :update, :destroy]
-
-  root 'links#index'
+  resources :links
+  root 'home#index'
 end
