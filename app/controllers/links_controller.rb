@@ -1,5 +1,6 @@
 class LinksController < ApplicationController
   before_action :set_link, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   def index
     @links = current_user.links
@@ -47,9 +48,9 @@ class LinksController < ApplicationController
 
   def destroy
     @link.destroy
-  
+
     respond_to do |format|
-      format.html { redirect_to @links, notice: 'Link was successfully destroyed.' }
+      format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@link) }
     end
   end
