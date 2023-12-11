@@ -1,29 +1,63 @@
+
+<% if flash.now[:notice] %>
+  <div class="alert alert-notice">
+    <%= flash.now[:notice] %>
+  </div>
+<% end %>
+
 <h1>Listing Links</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>URL</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @links.each do |link| %>
+<% if @links.present? %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link.name %></td>
-        <td><%= link.url %></td>
-        <td>
-          <%= link_to 'Show', link %>
-          <%= link_to 'Edit', edit_link_path(link) %>
-          <%= link_to 'Destroy', link_path(link), data: { confirm: 'Are you sure?', turbo_method: :delete} %>
-        </td>
+        <th>Name</th>
+        <th>Short URL</th>
+        <th>Access</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @links.each do |link| %>
+        <tr>
+          <td><%= link.name %></td>
+          <td><%= link_to follow_link_url(link.slug), follow_link_path(slug: link.slug) %></td>
+          <td>
+            <%= link_to 'Access Details', access_details_access_path(link) if link.accesses.present? %><br>
+            <%= link_to 'Access per Day', access_counts_access_path(link) if link.accesses.present? %>
+          </td>
+          <td class='actions-container'>
+            <%= link_to 'Show', link, class: 'btn btn-success'%>
+            <%= link_to 'Edit', edit_link_path(link), class: 'btn btn-primary' %>
+
+            <%= button_to 'Delete', link, method: :delete, class: "btn btn-danger", data: { turbo_confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% else %>
+  <p>No links found.</p>
+<% end %>
 <br>
 
-<%= link_to 'New Link', new_link_path %>
+<div class='new-link'>
+  <%= link_to 'New Link', new_link_path, class: 'btn btn-success' %>
+</div>
+
+<script>
+  console.log("Script loaded!");
+  document.addEventListener("turbo:submit-start", function (event) {
+    console.log("turbo:submit-start event triggered");
+    var form = event.detail.form;
+    if (form.hasAttribute("data-turbo-confirm")) {
+      var message = form.getAttribute("data-turbo-confirm");
+      if (!window.confirm(message)) {
+        event.preventDefault();
+      }
+    }
+  });
+</script>

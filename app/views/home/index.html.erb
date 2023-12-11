@@ -1,4 +1,22 @@
-<h1>Bienvenido a ChqTo</h1>
+<body class="home-body">
+  <div class="container text-center">
+    <div class="content-container">
+      <h1>Wolcome to Chq.To!</h1><br>
+      <%= form_with(url: new_link_path, method: :get) do |form| %>
+        <div class="text-url">
+          <%= form.text_field :url, placeholder: "Enter the URL to be shortened here", class: "form-control" %>
+        </div><br>
 
-<%= link_to "Crear Nuevo Enlace", new_link_path, class: "btn btn-primary" %>
-<%# <%= link_to "Ver Estadísticas", statistics_path, class: "btn btn-info" %>
+        <div>
+          <%= form.submit "Create New Link", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+  </div>
+</body>

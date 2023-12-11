@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -9,7 +9,22 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "/l/:slug", to: "links#follow", as: "follow_link"
 
-  resources :links
+  resources :links do
+    member do
+      get 'password_form'
+      post 'verify_password'
+
+    end
+  end
+
+  resources :accesses, only: [] do
+    member do
+      get 'access_details'
+      get 'access_counts'
+    end
+  end
+
   root 'home#index'
 end

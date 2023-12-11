@@ -1,0 +1,22 @@
+<!-- app/views/links/_form_search.html.erb -->
+
+<%= form_with(url: access_details_access_path(@link), method: :get, local: true) do |form| %>
+  <div>
+    <%= form.label :ip, 'IP Address:' %>
+    <%= form.text_field :ip, value: params[:ip] %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, 'Start Date:' %>
+    <%= form.date_field :start_date, value: params[:start_date] %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, 'End Date:' %>
+    <%= form.date_field :end_date, value: params[:end_date] %>
+  </div>
+
+  <div>
+    <%= form.submit 'Search' %>
+  </div>
+<% end %>

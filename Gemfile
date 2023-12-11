@@ -68,3 +68,7 @@ group :test do
 end
 
 gem 'devise'
+
+gem 'groupdate'
+
+gem 'activerecord-nulldb-adapter', group: :development

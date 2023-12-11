@@ -1,0 +1,20 @@
+<h1>Number of Accesses per Day for <%= @link.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Number of Accesses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accesses_by_day.each do |day, count| %>
+      <tr>
+        <td><%= day %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', links_path %> 

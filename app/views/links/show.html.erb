@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
+<% if flash.now[:notice] %>
+  <div class="alert alert-notice">
+    <%= flash.now[:notice] %>
+  </div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @link.name %>
-</p>
+<h1><%= @link.name %></h1>
 
 <p>
   <strong>URL:</strong>
@@ -12,7 +13,7 @@
 
 <p>
   <strong>Short URL:</strong>
-  <%= @link.short_url %>
+  <%= link_to follow_link_url(@link.slug), follow_link_path(slug: @link.slug) %>
 </p>
 
 <p>
@@ -20,20 +21,19 @@
   <%= @link.link_type %>
 </p>
 
-<%if @link.link_type === "temporal"%>
+<%if @link.link_type === "Temporary"%>
   <p>
     <strong>Expires At:</strong>
     <%= @link.expires_at %>
   </p>
 <%end%>
 
-<%if @link.link_type === "privado"%>
+<%if @link.link_type === "Private"%>
   <p>
     <strong>Password:</strong>
     <%= @link.password %>
   </p>
 <%end%>
 
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path %> |
-<%= link_to 'Destroy', link_path(@link), data: { confirm: 'Are you sure?', turbo_method: :delete }%>
+<%= link_to 'Edit', edit_link_path(@link), class:"btn btn-primary" %><br>
+<%= link_to 'Back', links_path %> 

@@ -1,0 +1,28 @@
+<h1>Access Details for <%= @link.name %></h1>
+
+<% if flash[:error] %>
+  <div class="alert alert-danger">
+    <%= flash[:error] %>
+  </div>
+<% end %>
+
+<%= render 'form_search' %>
+<br><br>
+<table>
+  <thead>
+    <tr>
+      <th>Date and Time</th>
+      <th>IP Adress</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @accesses.each do |access| %>
+      <tr>
+        <td><%= access.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
+        <td><%= access.ip_address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', links_path %> 

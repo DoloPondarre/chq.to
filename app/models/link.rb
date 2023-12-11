@@ -1,22 +1,22 @@
 class Link < ApplicationRecord
     belongs_to :user
+    has_many :accesses, dependent: :destroy
 
     validates :name, presence: true
     validates :url, presence: true, format: { with: URI::regexp(%w[http https]), message: 'must be a valid URL' }
     validates :slug, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9_-]+\z/, message: 'can only contain letters, numbers, underscores, and hyphens' }
-    validates :link_type, presence: true, inclusion: { in: %w[regular temporal privado efimero], message: 'must be one of: regular, temporal, privado, efimero' }
-    validates :expires_at, presence: true, if: -> { link_type == 'temporal' }
-    validates :password, presence: true, if: -> { link_type == 'privado' }
+    validates :link_type, presence: true, inclusion: { in: %w[Regular Temporary Private Ephemeral], message: 'must be one of: Regular, Temporary, Private, Ephemeral' }
+    validates :expires_at, presence: true, if: -> { link_type == 'Temporary' }
+    validates :password, presence: true, if: -> { link_type == 'Private' }
 
     before_validation :generate_unique_slug
-    before_save :generate_short_url
     
     def self.link_types
         {
-          'Regular' => 'regular',
-          'Temporal' => 'temporal',
-          'Privado' => 'privado',
-          'Efimero' => 'efimero'
+          'Regular' => 'Regular',
+          'Temporary' => 'Temporary',
+          'Private' => 'Private',
+          'Ephemeral' => 'Ephemeral'
         }
     end
 
@@ -26,7 +26,4 @@ class Link < ApplicationRecord
         self.slug ||= SecureRandom.hex(4)
     end
 
-    def generate_short_url
-        self.short_url = "https://chq.to/l/#{slug}" # Modifica según tu patrón de URL corta
-    end
 end

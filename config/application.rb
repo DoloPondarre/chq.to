@@ -2,6 +2,8 @@ require_relative "boot"
 
 require "rails/all"
 
+require 'groupdate'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -23,5 +25,6 @@ module ChqTo
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.time_zone = 'America/Argentina/Buenos_Aires'
   end
 end

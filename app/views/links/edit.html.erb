@@ -1,8 +1,6 @@
 <h1>Editing Link</h1>
 
-<turbo-frame id="link_form">
-  <%= render 'form', link: @link %>
-</turbo-frame>
+<%= render 'form', link: @link %>
 
-<%= link_to 'Show', @link %> |
+<%= link_to 'Show', @link, class:"btn btn-success" %><br>
 <%= link_to 'Back', links_path %>

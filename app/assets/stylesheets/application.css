@@ -15,16 +15,110 @@
  */
 
  body {
-    background-color: #f0f0f0;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-
-header{
-    text-align: right;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(233, 204, 245);
 }
 
-nav {
-    text-align: left;
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
-  
+
+.container {
+  max-width: 600px;
+  margin-top: 15%; /* Deja espacio para el navbar */
+}
+
+.navbar {
+  color: #f2f2f2;
+  background-color: rgb(90, 28, 114);
+}
+
+.navbar-container {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  color: white; /* Cambia el color del texto a blanco */
+  font-weight: bold; /* Hace que el texto esté en negrita */
+}
+
+.body-container {
+  margin-top: 70px; /* Alinea el contenido debajo del navbar */
+}
+
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+}
+
+.alert-danger {
+  color: #9d1220;
+  background-color: rgb(235, 168, 188);
+  border-color: #f5c6cb;
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  font-weight: bold; /* Añadir negrita al texto del mensaje */
+  padding: 10px; /* Aumentar el relleno para hacer el mensaje más grande y visible */
+  text-align: center; /* Centrar el texto en el mensaje */
+}
+
+/* Ajustes para la tabla y sus bordes */
+table {
+  border-collapse: collapse;
+  max-width: 80%;
+  display: table;
+  margin: auto;
+  border: 1px solid #ffffff; /* Agrega un borde general a la tabla */
+}
+
+/* Ajustes para las celdas del encabezado (th) */
+th {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  text-align: left;
+  background-color: rgb(236, 167, 242);
+}
+
+/* Ajustes para las celdas de datos (td) */
+td {
+  border: 1px solid #ffffff;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Ajustes específicos para la columna "Actions" */
+td.actions-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.btn {
+  margin-bottom: 10px; /* Ajusta el margen inferior de los botones si es necesario */
+}
+
+.text-url{
+  max-width: 100%;
+  margin: auto;
+}
