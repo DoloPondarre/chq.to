@@ -18,14 +18,14 @@ class AccessesController < ApplicationController
             end_date = Date.parse(params[:end_date])
 
             if start_date > end_date
-            flash[:error] = 'La fecha de inicio debe ser menor o igual a la fecha de fin.'
+            flash[:error] = 'The start date must be less than or equal to the end date.'
             render 'access_details'
             return
             end
 
             @accesses = @accesses.filter_by_date_range(params[:start_date], params[:end_date])
         elsif params[:start_date].present? || params[:end_date].present?
-            flash[:error] = 'Debes ingresar ambas fechas para el filtrado.'
+            flash[:error] = 'You must enter both dates for filtering.'
             render 'access_details'
             return
         end

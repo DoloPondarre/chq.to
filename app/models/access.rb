@@ -10,7 +10,6 @@ class Access < ApplicationRecord
     if start_date.present? && end_date.present?
       where(created_at: start_date..end_date)
     elsif start_date.present? || end_date.present?
-      # Agregar mensaje de error al flash
       flash[:error] = 'Both start and end dates are required for date range filtering'
       none
     else
