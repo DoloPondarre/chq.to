@@ -4,22 +4,23 @@
   <div class="alert alert-danger">
     <%= flash[:error] %>
   </div>
-<% end %>
+<% end %><br>
 
 <%= render 'form_search' %>
-<br><br>
+<br>
+
 <table>
   <thead>
     <tr>
-      <th>Date and Time</th>
       <th>IP Adress</th>
+      <th>Date and Time</th>
     </tr>
   </thead>
   <tbody>
     <% @accesses.each do |access| %>
       <tr>
-        <td><%= access.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
         <td><%= access.ip_address %></td>
+        <td><%= access.created_at.strftime('%Y-%m-%d %H:%M:%S') %></td>
       </tr>
     <% end %>
   </tbody>

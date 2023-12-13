@@ -29,6 +29,11 @@ class AccessesController < ApplicationController
             render 'access_details'
             return
         end
+
+        if @accesses.empty?
+            flash.now[:error] = 'No items were found for your search.'
+            @accesses = @link.accesses.order(created_at: :desc)
+        end
     end
     
     def access_counts
