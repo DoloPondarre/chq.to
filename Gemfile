@@ -67,8 +67,12 @@ group :test do
   gem "selenium-webdriver"
 end
 
+# Gema para el manejo de autenticación de usuarios
 gem 'devise'
 
+# Gema que me permite agrupar por día los accesos
 gem 'groupdate'
 
+# Gema que proporciona soporte para algunas funciones de bases de datos que SQLite 
+# no admite de forma predeterminada (para el manejo de zonas horarias)
 gem 'activerecord-nulldb-adapter', group: :development
